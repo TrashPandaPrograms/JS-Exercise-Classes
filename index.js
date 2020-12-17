@@ -77,11 +77,24 @@ class Airplane {
   */
   
   function Car(model, milesPerGallon) {
-    this.model = models;
-    this.milesPerGallon = mpgs;
-    this.tank = [];
-}
-  
+    this.models = model;
+    this.mpgs = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+
+  Car.prototype.fill = function(gallons) {
+    this.tank += gallons;
+  };
+
+  Car.prototype.drive = function(distance) {
+    this.odometer += distance;
+    this.tank -= distance / this.mpgs;
+    if (this.odometer > this.tank){
+      return `I ran out of fuel at ${distance} being ${this.odometer}`
+    }
+  }
+
   /*
     TASK 3
       - Write a Lambdasian class.
