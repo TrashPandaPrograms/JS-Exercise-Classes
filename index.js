@@ -41,8 +41,25 @@ class Airplane {
           + It should return a string with `name` and `age`. Example: "Mary, 50"
   */
   
- class Person {
-    
+  function Person(names, ages) {
+    this.name = names;
+    this.age = ages;
+    this.stomach = [];
+  }
+
+  Person.prototype.eat = function(someFood) {
+    if (this.stomach.length <10){
+      this.stomach.push(someFood);
+    }
+  };
+
+  Person.prototype.poop = function() {
+  this.stomach = [];
+  this.stomach.length = 0;
+  }
+
+  Person.prototype.toString = function() {
+  return `${this.name}, ${this.age}`;
   }
   
   /*
@@ -59,10 +76,25 @@ class Airplane {
           + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
   */
   
- class Car {
-    
+  function Car(model, milesPerGallon) {
+    this.models = model;
+    this.mpgs = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
   }
-  
+
+  Car.prototype.fill = function(gallons) {
+    this.tank += gallons;
+  };
+
+  Car.prototype.drive = function(distance) {
+    this.odometer += distance;
+    this.tank -= distance / this.mpgs;
+    if (this.odometer > this.tank){
+      return `I ran out of fuel at ${distance} being ${this.odometer}`
+    }
+  }
+
   /*
     TASK 3
       - Write a Lambdasian class.
